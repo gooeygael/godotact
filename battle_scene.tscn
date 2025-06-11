@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bd6cvc3seschh"]
+
+[ext_resource type="Script" uid="uid://b8f2xpnm5jwty" path="res://Scripts/BattleMap.gd" id="2_5joda"]
+[ext_resource type="TileSet" path="res://tilesets/new_tile_set.tres" id="2_r5l0u"]
+
+[sub_resource type="TileSet" id="TileSet_r5l0u"]
+
+[node name="BattleScene" type="Node2D"]
+
+[node name="BattleMap" type="Node2D" parent="."]
+script = ExtResource("2_5joda")
+metadata/_custom_type_script = "uid://b8f2xpnm5jwty"
+
+[node name="TileContainer" type="Node2D" parent="BattleMap"]
+
+[node name="UnitContainer" type="Node2D" parent="BattleMap"]
+
+[node name="TileMap" type="TileMap" parent="BattleMap"]
+tile_set = ExtResource("2_r5l0u")
+format = 2
+
+[node name="TileMapLayer" type="TileMapLayer" parent="BattleMap/TileMap"]
+tile_set = SubResource("TileSet_r5l0u")
