@@ -1,7 +1,7 @@
 res://Scripts/BattleMap.gd
 res://grid_manager.tscn
 res://Scripts/Unit.gd
-res://unit.tscn
+res://Unit.tscn
 res://battle_scene.tscn
 res://Tile.gd
 res://Tile.tscn

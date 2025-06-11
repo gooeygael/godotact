@@ -9,8 +9,8 @@ extends Node2D
 @onready var tile_container = $TileContainer
 @onready var unit_container = $UnitContainer
 
-var tile_scene = preload("res:///Tile.tscn")
-var unit_scene := preload("res://unit.tscn")
+var tile_scene = preload("res://Tile.tscn")
+var unit_scene := preload("res://Unit.tscn")
 
 var tiles: Dictionary = {}
 var visual_tiles: Dictionary = {}
@@ -25,13 +25,13 @@ func _ready():
 
 	
 func highlight_range(center: Vector2i, range: int):
-	for x in range * 2 + 1:
-		for y in range * 2 + 1:
-			var pos = center + Vector2i(x - range, y - range)
-			if tiles.has(pos):
-				var tile_node = get_tile_node_at(pos)
-				if tile_node:
-					tile_node.highlight()
+        for x in range(range * 2 + 1):
+                for y in range(range * 2 + 1):
+                        var pos = center + Vector2i(x - range, y - range)
+                        if tiles.has(pos):
+                                var tile_node = get_tile_node_at(pos)
+                                if tile_node:
+                                        tile_node.highlight()
 
 func get_tile_node_at(pos: Vector2i) -> Node2D:
 	for child in tile_container.get_children():
