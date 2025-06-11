@@ -3,7 +3,7 @@ extends Node2D
 
 @export var grid_width := 8
 @export var grid_height := 5
-@export var cell_size := 24
+var cell_size: int = Config.CELL_SIZE
 
 
 @onready var tile_container = $TileContainer
@@ -19,19 +19,24 @@ var selected_unit: Node = null
 var movement_range_tiles := []
 
 func _ready():
-	generate_grid()
-	spawn_test_unit()
+	   # Offset the map so the first tile is fully visible at the origin
+		var half_cell := cell_size / 2
+		tile_container.position = Vector2(half_cell, half_cell)
+		unit_container.position = Vector2(half_cell, half_cell)
+
+		generate_grid()
+		spawn_test_unit()
 
 
-	
+
 func highlight_range(center: Vector2i, range: int):
-        for x in range(range * 2 + 1):
-                for y in range(range * 2 + 1):
-                        var pos = center + Vector2i(x - range, y - range)
-                        if tiles.has(pos):
-                                var tile_node = get_tile_node_at(pos)
-                                if tile_node:
-                                        tile_node.highlight()
+		for x in range(range * 2 + 1):
+				for y in range(range * 2 + 1):
+						var pos = center + Vector2i(x - range, y - range)
+						if tiles.has(pos):
+								var tile_node = get_tile_node_at(pos)
+								if tile_node:
+										tile_node.highlight()
 
 func get_tile_node_at(pos: Vector2i) -> Node2D:
 	for child in tile_container.get_children():
@@ -109,7 +114,7 @@ func to_grid(world_pos: Vector2) -> Vector2i:
 
 func spawn_test_unit():
 	var unit = unit_scene.instantiate()
-	unit.grid_pos = Vector2i(2, 2)
+	unit.grid_pos = Vector2i(1, 1)
 	unit.cell_size = cell_size
 	unit.map = self  # Inject the reference to BattleMap
 	unit_container.add_child(unit)

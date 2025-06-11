@@ -4,7 +4,7 @@ extends Node2D
 @export var default_color: Color = Color.DARK_GRAY
 @export var highlight_color: Color = Color.YELLOW
 @export var grid_pos: Vector2i
-@export var cell_size: int = 128
+var cell_size := Config.CELL_SIZE
 
 @onready var sprite = $Sprite2D
 
@@ -17,15 +17,20 @@ func _ready():
 	update_visual()
 	reset()
 
+
 func update_visual():
 	sprite.texture = tile_texture
-	sprite.region_enabled = true
-	sprite.region_rect = Rect2(
-		Vector2(region_index % 4, region_index / 4) * tile_size,
-		tile_size
-	)
-	sprite.scale = Vector2.ONE
-	sprite.position = Vector2.ZERO
+	if tile_texture:
+		var columns = int(tile_texture.get_width() / tile_size.x)
+		if columns < 1:
+			columns = 1
+		sprite.region_enabled = true
+		sprite.region_rect = Rect2(
+			Vector2(region_index % columns, region_index / columns) * tile_size,
+			tile_size
+		)
+	else:
+		sprite.region_enabled = false
 
 
 func highlight():
