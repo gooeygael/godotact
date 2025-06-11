@@ -39,10 +39,9 @@ func highlight_range(center: Vector2i, range: int):
 										tile_node.highlight()
 
 func get_tile_node_at(pos: Vector2i) -> Node2D:
-	for child in tile_container.get_children():
-		if child is Tile and child.grid_pos == pos:
-			return child
-	return null
+		if visual_tiles.has(pos):
+			return visual_tiles[pos]
+		return null
 
 	
 func show_movement_range(origin: Vector2i, range: int):

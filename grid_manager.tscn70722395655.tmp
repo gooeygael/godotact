@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmq4qvffoejur"]
-
-[ext_resource type="Script" uid="uid://b8f2xpnm5jwty" path="res://Scripts/BattleMap.gd" id="1_j4by3"]
-
-[node name="GridManager" type="Node2D"]
-script = ExtResource("1_j4by3")
-grid_width = null
-grid_height = null
-cell_size = null

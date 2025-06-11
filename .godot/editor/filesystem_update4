@@ -6,3 +6,4 @@ res://grid_manager.tscn
 res://Unit.tscn
 res://Scripts/Tile.gd
 res://Scripts/Unit.gd
+res://README.md
