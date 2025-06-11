@@ -2,10 +2,14 @@ extends CharacterBody2D
 class_name Unit
 
 @export var cell_size := 128
+var _grid_pos: Vector2i = Vector2i.ZERO
+
 @export var grid_pos: Vector2i:
-	set(value):
-		grid_pos = value
-		update_position()
+        get:
+                return _grid_pos
+        set(value):
+                _grid_pos = value
+                update_position()
 
 var map: BattleMap  # Set from BattleMap.gd on spawn
 
