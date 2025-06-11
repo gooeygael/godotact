@@ -3,7 +3,7 @@ extends Node2D
 
 @export var grid_width := 8
 @export var grid_height := 5
-@export var cell_size := 24
+@export var cell_size := 128
 
 
 @onready var tile_container = $TileContainer
@@ -19,8 +19,13 @@ var selected_unit: Node = null
 var movement_range_tiles := []
 
 func _ready():
-	generate_grid()
-	spawn_test_unit()
+       # Offset the map so the first tile is fully visible at the origin
+       var half_cell := cell_size / 2
+       tile_container.position = Vector2(half_cell, half_cell)
+       unit_container.position = Vector2(half_cell, half_cell)
+
+       generate_grid()
+       spawn_test_unit()
 
 
 	

@@ -16,7 +16,16 @@ var map: BattleMap  # Set from BattleMap.gd on spawn
 @onready var sprite = $Sprite2D
 
 func _ready():
-	update_position()
+       update_position()
+       fit_to_tile()
+
+func fit_to_tile():
+       if sprite.texture:
+               var tex_size = sprite.texture.get_size()
+               if tex_size.x != 0 and tex_size.y != 0:
+                       var scale_x = cell_size / tex_size.x
+                       var scale_y = cell_size / tex_size.y
+                       sprite.scale = Vector2(scale_x, scale_y)
 
 func move_to(target: Vector2i):
 	grid_pos = target  # Will trigger position update

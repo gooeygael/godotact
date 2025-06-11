@@ -19,11 +19,17 @@ func _ready():
 
 func update_visual():
 	sprite.texture = tile_texture
-	sprite.region_enabled = true
-	sprite.region_rect = Rect2(
-		Vector2(region_index % 4, region_index / 4) * tile_size,
-		tile_size
-	)
+	if tile_texture:
+		var columns = int(tile_texture.get_width() / tile_size.x)
+		if columns < 1:
+			columns = 1
+		sprite.region_enabled = true
+		sprite.region_rect = Rect2(
+			Vector2(region_index % columns, region_index / columns) * tile_size,
+			tile_size
+		)
+	else:
+		sprite.region_enabled = false
 	sprite.scale = Vector2.ONE
 	sprite.position = Vector2.ZERO
 
