@@ -7,7 +7,7 @@ class_name GridOverlay
 
 func _ready() -> void:
 	# ensure we draw immediately
-	update()
+	queue_redraw()
 
 func _draw() -> void:
 	var w = cell_size.x * grid_size.x
