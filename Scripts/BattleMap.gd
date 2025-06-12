@@ -1,9 +1,9 @@
 class_name BattleMap
 extends Node2D
 
-@export var grid_width := 8
-@export var grid_height := 5
+@export var map_path := "res://data/sample_map.json"
 var cell_size: int = Config.CELL_SIZE
+var state: GameState
 
 
 @onready var tile_container = $TileContainer
@@ -19,13 +19,15 @@ var selected_unit: Node = null
 var movement_range_tiles := []
 
 func _ready():
-	   # Offset the map so the first tile is fully visible at the origin
-		var half_cell := cell_size / 2
-		tile_container.position = Vector2(half_cell, half_cell)
-		unit_container.position = Vector2(half_cell, half_cell)
+	state = GameState.new(map_path)
+		
+	# Offset the map so the first tile is fully visible at the origin
+	var half_cell := cell_size / 2
+	tile_container.position = Vector2(half_cell, half_cell)
+	unit_container.position = Vector2(half_cell, half_cell)
 
-		generate_grid()
-		spawn_test_unit()
+	generate_grid()
+	spawn_units()
 
 
 
@@ -85,22 +87,18 @@ func select_unit(unit: Node):
 
 
 func generate_grid():
-	for x in range(grid_width):
-		for y in range(grid_height):
-			var pos = Vector2i(x, y)
-			tiles[pos] = {
-				"walkable": true,
-				"occupied": false,
-				"effect": null,
-			}
-
+	for x in state.grid_width:
+		for y in state.grid_height:
+			var pos := Vector2i(x, y)
+			var data: Dictionary = state.tiles.get(pos, {})
+			tiles[pos] = data.duplicate()
+			
 			var tile_instance = tile_scene.instantiate()
 			tile_instance.grid_pos = pos
 			tile_instance.cell_size = cell_size
 			tile_instance.update_position()
 			tile_container.add_child(tile_instance)
-
-
+			
 			visual_tiles[pos] = tile_instance
 
 
@@ -111,9 +109,10 @@ func to_grid(world_pos: Vector2) -> Vector2i:
 	return Vector2i(floor(world_pos.x / cell_size), floor(world_pos.y / cell_size))
 	
 
-func spawn_test_unit():
-	var unit = unit_scene.instantiate()
-	unit.grid_pos = Vector2i(1, 1)
-	unit.cell_size = cell_size
-	unit.map = self  # Inject the reference to BattleMap
-	unit_container.add_child(unit)
+func spawn_units():
+	for info in state.units:
+		var unit = unit_scene.instantiate()
+		unit.grid_pos = Vector2i(info.get("x", 0), info.get("y", 0))
+		unit.cell_size = cell_size
+		unit.map = self
+		unit_container.add_child(unit)

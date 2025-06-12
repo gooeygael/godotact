@@ -1,9 +1,8 @@
-res://Tile.tscn
 res://battle_scene.tscn
 res://tilesets/new_tile_set.tres
 res://Scripts/BattleMap.gd
 res://grid_manager.tscn
-res://Unit.tscn
-res://Scripts/Tile.gd
 res://Scripts/Unit.gd
-res://README.md
+res://Scripts/Config.gd
+res://data/config.json
+res://data/sample_map.json

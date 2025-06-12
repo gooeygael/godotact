@@ -27,9 +27,6 @@ func fit_to_tile():
 			var scale_y = cell_size / tex_size.y
 			sprite.scale = Vector2(scale_x, scale_y)
 
-func move_to(target: Vector2i):
-	grid_pos = target  # Will trigger position update
-
 func _input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed and map:
 		map.select_unit(self)
