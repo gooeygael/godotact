@@ -8,6 +8,7 @@
 
 [node name="BattleMap" type="Node2D" parent="."]
 script = ExtResource("2_5joda")
+map_path = null
 metadata/_custom_type_script = "uid://b8f2xpnm5jwty"
 
 [node name="TileContainer" type="Node2D" parent="BattleMap"]

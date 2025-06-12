@@ -49,16 +49,15 @@ func generate_grid():
 			
 			visual_tiles[pos] = tile_instance
 
-func world_to_cell(world_pos: Vector2) -> Vector2:
-	return Vector2(
-		floor(world_pos.x / cell_size.x),
-		floor(world_pos.y / cell_size.y)
+func world_to_cell(world_pos: Vector2) -> Vector2i:
+	return Vector2i(
+		floor(world_pos.x / cell_size),
+		floor(world_pos.y / cell_size)
 	)
 
-func cell_to_world(cell: Vector2) -> Vector2:
-	return (cell * cell_size) + (cell_size / 2)
-
-	
+func cell_to_world(cell: Vector2i) -> Vector2:
+	return Vector2(cell) * cell_size + Vector2.ONE * (cell_size / 2.0)
+		
 
 func spawn_units():
 	for info in state.units:
