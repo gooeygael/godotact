@@ -6,3 +6,4 @@ res://Scripts/Unit.gd
 res://Scripts/Config.gd
 res://data/config.json
 res://data/sample_map.json
+res://Scripts/grid_overlay.gd
