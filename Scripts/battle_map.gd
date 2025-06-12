@@ -9,8 +9,8 @@ var state: GameState
 @onready var tile_container = $TileContainer
 @onready var unit_container = $UnitContainer
 
-var tile_scene = preload("res://Tile.tscn")
-var unit_scene := preload("res://Unit.tscn")
+var tile_scene = preload("res://tile.tscn")
+var unit_scene := preload("res://unit.tscn")
 
 var tiles: Dictionary = {}
 var visual_tiles: Dictionary = {}

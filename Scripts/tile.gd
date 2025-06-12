@@ -1,8 +1,6 @@
 class_name Tile
 extends Node2D
 
-@export var default_color: Color = Color.DARK_GRAY
-@export var highlight_color: Color = Color.YELLOW
 @export var grid_pos: Vector2i
 var cell_size := Config.CELL_SIZE
 
@@ -14,9 +12,7 @@ var cell_size := Config.CELL_SIZE
 
 
 func _ready():
-	update_visual()
-	reset()
-
+       update_visual()
 
 func update_visual():
 	sprite.texture = tile_texture
@@ -31,14 +27,6 @@ func update_visual():
 		)
 	else:
 		sprite.region_enabled = false
-
-
-func highlight():
-	sprite.modulate = highlight_color
-
-func reset():
-	sprite.modulate = default_color
-
 
 func update_position():
 	position = grid_pos * cell_size
