@@ -1,17 +1,13 @@
-
 extends Node2D
 class_name BattleScene
 
 @onready var background: Sprite2D = $background
 @onready var battle_map: Node2D = $BattleMap
-@onready var grid_overlay: Node2D = $"Node2D"
+@onready var grid_overlay: GridOverlay = $"Node2D"
 
 func _ready() -> void:
 	_update_layout()
-
-func _notification(what: int) -> void:
-	if what == NOTIFICATION_RESIZED:
-		_update_layout()
+	get_viewport().size_changed.connect(_update_layout)
 
 func _update_layout() -> void:
 	_fit_background()
@@ -33,7 +29,7 @@ func _fit_grid_area() -> void:
 	var available_width: float = viewport_size.x - side_margin * 2.0
 	var available_height: float = bottom_y - top_y
 
-var grid_size: Vector2 = grid_overlay.grid_size
+	var grid_size: Vector2 = grid_overlay.grid_size
 	var cell_size: float = Config.CELL_SIZE
 	var grid_pixel_size: Vector2 = Vector2(grid_size.x * cell_size, grid_size.y * cell_size)
 
@@ -45,4 +41,3 @@ var grid_size: Vector2 = grid_overlay.grid_size
 	var start_pos: Vector2 = Vector2(side_margin, bottom_y - scaled_size.y)
 	battle_map.position = start_pos
 	grid_overlay.position = start_pos
-
