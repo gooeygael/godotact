@@ -15,8 +15,6 @@ var unit_scene := preload("res://Unit.tscn")
 var tiles: Dictionary = {}
 var visual_tiles: Dictionary = {}
 
-var selected_unit: Node = null
-var movement_range_tiles := []
 
 func _ready():
 	state = GameState.new(map_path)
