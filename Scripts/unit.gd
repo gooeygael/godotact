@@ -57,10 +57,12 @@ func take_turn() -> void:
                 return
         if cooldown > 0:
                 cooldown -= 1
+
 		print("%s unit at %s waiting, cooldown %d" % [team, grid_pos, cooldown])
 		return
 
 		print("%s unit at %s acting" % [team, grid_pos])
+
         var target = find_adjacent_enemy()
         if target:
                 perform_attack(target)
@@ -79,11 +81,13 @@ func find_adjacent_enemy() -> Unit:
 func perform_attack(target: Unit) -> void:
         target.receive_damage(attack)
 		print("%s unit at %s attacks %s unit at %s" % [team, grid_pos, target.team, target.grid_pos])
+
         cooldown = attack_cd
 
 func receive_damage(amount: int) -> void:
         health -= amount
 		print("%s unit at %s takes %d damage, hp %d" % [team, grid_pos, amount, health])
+
         if health <= 0:
                 die()
 
@@ -97,4 +101,5 @@ func attempt_move_forward() -> void:
         if map.can_move_to(new_pos):
                 map.move_unit(self, new_pos)
 		print("%s unit moves to %s" % [team, new_pos])
+
         cooldown = move_cd

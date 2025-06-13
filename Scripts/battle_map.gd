@@ -78,7 +78,9 @@ func spawn_units():
                 units.append(unit)
                 tiles[unit.grid_pos]["occupied"] = true
                 units_by_pos[unit.grid_pos] = unit
+
 	print("Spawned %s unit at %s" % [unit.team, unit.grid_pos])
+
 
 func get_unit_at(pos: Vector2i) -> Unit:
         return units_by_pos.get(pos)
