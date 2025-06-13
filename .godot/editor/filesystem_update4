@@ -1,3 +1,6 @@
-res://battle_scene.tscn
 res://grid_manager.tscn
+res://Scripts/tile.gd
+res://Unit.tscn
+res://README.md
 res://Scripts/battle_scene.gd
+res://Tile.tscn

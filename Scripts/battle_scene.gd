@@ -38,6 +38,9 @@ func _fit_grid_area() -> void:
 	grid_overlay.scale = Vector2.ONE * scale_factor
 
 	var scaled_size: Vector2 = grid_pixel_size * scale_factor
-	var start_pos: Vector2 = Vector2(side_margin, bottom_y - scaled_size.y)
+	var start_pos = Vector2(
+	side_margin + (available_width - scaled_size.x) / 2,
+	top_y + (available_height - scaled_size.y) / 2
+	)
 	battle_map.position = start_pos
 	grid_overlay.position = start_pos
