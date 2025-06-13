@@ -1,15 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://bd6cvc3seschh"]
+[gd_scene load_steps=4 format=3 uid="uid://bd6cvc3seschh"]
 
 [ext_resource type="Script" uid="uid://b8f2xpnm5jwty" path="res://Scripts/BattleMap.gd" id="2_5joda"]
 [ext_resource type="Texture2D" uid="uid://csk56s4va43kd" path="res://Assets/background.png" id="2_r5l0u"]
 [ext_resource type="Script" uid="uid://dicas2ku2it7k" path="res://Scripts/grid_overlay.gd" id="3_5g7vw"]
-[ext_resource type="Script" uid="uid://cm4eu5nlp6r0t" path="res://Scripts/BattleScene.gd" id="4_btlsc"]
 
 [node name="BattleScene" type="Node2D"]
-script = ExtResource("4_btlsc")
 
 [node name="BattleMap" type="Node2D" parent="."]
 script = ExtResource("2_5joda")
+map_path = null
 metadata/_custom_type_script = "uid://b8f2xpnm5jwty"
 
 [node name="TileContainer" type="Node2D" parent="BattleMap"]
@@ -19,7 +18,6 @@ metadata/_custom_type_script = "uid://b8f2xpnm5jwty"
 [node name="background" type="Sprite2D" parent="."]
 z_index = -1
 texture = ExtResource("2_r5l0u")
-centered = false
 
 [node name="Node2D" type="Node2D" parent="."]
 script = ExtResource("3_5g7vw")

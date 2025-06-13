@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cyocsvamdx3nj"]
 
-[ext_resource type="Script" uid="uid://bo3oemrpupm28" path="res://Scripts/tile.gd" id="1_j13wd"]
+[ext_resource type="Script" uid="uid://bo3oemrpupm28" path="res://Scripts/Tile.gd" id="1_j13wd"]
 [ext_resource type="Texture2D" uid="uid://oy4g7cxp531w" path="res://Assets/Terrain/Ground/Tilemap_Flat.png" id="2_flattx"]
 
 [node name="Tile" type="Node2D"]

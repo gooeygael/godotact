@@ -11,7 +11,7 @@ var _grid_pos: Vector2i = Vector2i.ZERO
 				_grid_pos = value
 				update_position()
 
-var map: BattleMap  # Set from battle_map.gd on spawn
+var map: BattleMap  # Set from BattleMap.gd on spawn
 
 @onready var sprite = $Sprite2D
 
@@ -27,6 +27,9 @@ func fit_to_tile():
 			var scale_y = cell_size / tex_size.y
 			sprite.scale = Vector2(scale_x, scale_y)
 
+func _input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton and event.pressed and map:
+		map.select_unit(self)
 
 func update_position():
 	position = grid_pos * cell_size
