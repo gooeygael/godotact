@@ -14,10 +14,19 @@ var _grid_pos: Vector2i = Vector2i.ZERO
 var map: BattleMap  # Set from battle_map.gd on spawn
 
 @onready var sprite = $Sprite2D
+@onready var cooldown: CooldownComponent = $CooldownComponent
+@onready var health: HealthComponent = $HealthComponent
+@onready var movement: MovementComponent = $MovementComponent
+@onready var attack: BasicAttackComponent = $BasicAttackComponent
+@onready var priority: PriorityComponent = $PriorityComponent
 
 func _ready():
 	update_position()
 	fit_to_tile()
+
+func tick() -> void:
+	if cooldown:
+		cooldown.tick()
 	
 func fit_to_tile():
 	if sprite.texture:
